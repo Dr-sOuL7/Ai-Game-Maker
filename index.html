@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07090d" />
+    <meta name="description" content="sOuLsSPIN — Physics. Strategy. Skill." />
+    <title>sOuLsSPIN — Physics. Strategy. Skill.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="scene" aria-label="3D Beyblade battle arena"></div>
+      <div class="grain"></div>
+      <header class="topbar">
+        <a class="brand" href="#" id="brandHome"><span class="brand-mark">S</span><span>sOuLs<span class="brand-accent">SPIN</span></span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link active" data-view="battle">Battle</button>
+          <button class="nav-link" data-view="workshop">Workshop</button>
+          <button class="nav-link" data-view="room">Private room</button>
+        </nav>
+        <div class="top-actions"><span class="online-pill"><i></i> SIMULATION READY</span><button class="icon-btn" id="settingsBtn" aria-label="Settings">☼</button></div>
+      </header>
+
+      <main>
+        <section class="view battle-view active" id="battleView">
+          <div class="arena-label"><span class="eyebrow">LIVE ARENA <i class="pulse-dot"></i></span><span class="arena-name">STADIUM 01 <b>·</b> CLASSIC</span></div>
+          <div class="match-strip">
+            <div class="score-block"><span class="tiny-label">YOU</span><strong id="playerScore">00</strong><small>POINTS</small></div>
+            <div class="match-center"><span class="round-label" id="roundLabel">ROUND 01</span><div class="phase-chip" id="phaseChip"><i></i><span>AUTONOMOUS</span></div><div class="phase-time" id="phaseTime">10.0</div></div>
+            <div class="score-block opponent-score"><span class="tiny-label" id="opponentNameTop">RIVAL</span><strong id="opponentScore">00</strong><small>POINTS</small></div>
+          </div>
+          <div class="fighter-card player-card" id="playerCard">
+            <div class="fighter-heading"><span class="avatar-mini player-avatar">✦</span><div><b id="playerBuildName">NOVA / 01</b><small>YOUR BEYBLADE</small></div><span class="live-tag">LIVE</span></div>
+            <div class="meter-row"><div class="meter-label"><span>SPIN</span><b id="playerSpinValue">100%</b></div><div class="meter"><i id="playerSpinBar" class="spin-bar"></i></div></div>
+            <div class="meter-row"><div class="meter-label"><span>BURST HEALTH</span><b id="playerHealthValue">100%</b></div><div class="meter"><i id="playerHealthBar" class="health-bar"></i></div></div>
+          </div>
+          <div class="fighter-card rival-card" id="rivalCard">
+            <div class="fighter-heading"><span class="avatar-mini rival-avatar">◈</span><div><b id="rivalBuildName">IRON WRAITH</b><small>AI RIVAL <span class="dot-separator">·</span> <span id="aiDifficulty">ADVANCED</span></small></div><span class="ai-tag">CPU</span></div>
+            <div class="meter-row"><div class="meter-label"><span>SPIN</span><b id="rivalSpinValue">100%</b></div><div class="meter"><i id="rivalSpinBar" class="spin-bar rival-spin"></i></div></div>
+            <div class="meter-row"><div class="meter-label"><span>BURST HEALTH</span><b id="rivalHealthValue">100%</b></div><div class="meter"><i id="rivalHealthBar" class="health-bar rival-health"></i></div></div>
+          </div>
+          <div class="camera-switch" aria-label="Camera perspective"><button data-camera="top" class="selected">01 <span>TOP</span></button><button data-camera="side">02 <span>SIDE</span></button><button data-camera="pov">03 <span>POV</span></button></div>
+          <div class="battle-feed" id="battleFeed"><span class="feed-icon">✦</span><span id="feedText">Ready when you are. Lock in your launch.</span></div>
+          <div class="control-panel">
+            <div class="phase-copy"><span class="phase-symbol" id="phaseSymbol">◌</span><div><b id="phaseTitle">WATCH THE FLOW</b><small id="phaseSub">Autonomous physics · control opens in a moment</small></div></div>
+            <div class="control-keys"><span class="key-group"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><small>STEER</small></span><span class="key-divider"></span><button class="action-key" id="dashBtn"><kbd>SPACE</kbd><span>DASH</span></button><button class="action-key" id="tiltBtn"><kbd>Q</kbd><span>TILT</span></button><button class="avatar-key" id="avatarBtn"><span>✦</span><span>AVATAR</span><kbd>E</kbd></button></div>
+          </div>
+          <button class="launch-overlay" id="launchOverlay"><span class="launch-ring">↗</span><span><b>ENTER THE ARENA</b><small>Click to launch your Beyblade</small></span><kbd>ENTER</kbd></button>
+          <div class="finish-overlay" id="finishOverlay"><span class="finish-kicker">ROUND COMPLETE</span><strong id="finishTitle">RING OUT</strong><p id="finishDescription">A clean finish. +2 points</p><button class="primary-btn" id="nextRoundBtn">NEXT ROUND <span>→</span></button></div>
+        </section>
+
+        <section class="view workshop-view" id="workshopView">
+          <div class="page-heading"><div><span class="eyebrow">THE WORKSHOP</span><h1>BUILD YOUR <em>EDGE.</em></h1><p>Four parts. Infinite ways to spin.</p></div><button class="ghost-btn" id="backToBattle">← BACK TO ARENA</button></div>
+          <div class="workshop-layout">
+            <div class="part-list">
+              <div class="part-tabs"><button class="part-tab active" data-part="core">CORE <small>01</small></button><button class="part-tab" data-part="blade">BLADE <small>02</small></button><button class="part-tab" data-part="disc">DISC <small>03</small></button><button class="part-tab" data-part="tip">TIP <small>04</small></button></div>
+              <div class="part-options" id="partOptions"></div>
+            </div>
+            <div class="preview-panel"><span class="eyebrow">LIVE PREVIEW</span><div id="workshopPreview"></div><div class="preview-caption"><b id="previewTitle">NOVA / 01</b><span>ROTATING PREVIEW</span></div></div>
+            <div class="build-panel"><label class="eyebrow" for="buildName">BUILD NAME</label><input id="buildName" maxlength="20" value="NOVA / 01" /><div class="stat-list" id="statList"></div><div class="build-actions"><button class="ghost-btn" id="saveBuild">SAVE BUILD</button><button class="primary-btn" id="testBuild">TEST BUILD <span>↗</span></button></div><div class="build-note">All competitive parts unlocked.<br />No stat progression. Just your build and your skill.</div></div>
+          </div>
+        </section>
+
+        <section class="view room-view" id="roomView">
+          <div class="page-heading"><div><span class="eyebrow">PRIVATE LOBBY <i class="pulse-dot"></i></span><h1>YOUR ROOM. <em>YOUR RULES.</em></h1><p>Set up a local battle, then take it to the stadium.</p></div></div>
+          <div class="room-layout"><div class="room-card room-code-card"><span class="eyebrow">ROOM CODE</span><strong id="roomCode">SOUL-481</strong><button class="ghost-btn" id="copyCode">COPY CODE</button><div class="room-divider"></div><label class="toggle-row"><span>Room visibility<small>Only invited players can join</small></span><input type="checkbox" checked disabled /><i></i></label><div class="room-status"><i></i> Room ready for players</div></div>
+            <div class="room-card"><div class="lobby-head"><span class="eyebrow">PLAYERS <b>02 / 04</b></span><span class="ready-text">● ALL READY</span></div><div class="lobby-player"><span class="lobby-avatar you">S</span><div><b>You</b><small>HOST · PLAYER 01</small></div><span class="ready-pill">READY</span></div><div class="lobby-player"><span class="lobby-avatar cpu">◈</span><div><b>Iron Wraith</b><small>CPU · ADVANCED · BALANCED</small></div><span class="ready-pill">READY</span></div><div class="lobby-player empty"><span class="lobby-avatar">+</span><div><b>Open slot</b><small>INVITE A FRIEND</small></div><span class="waiting-pill">WAITING</span></div></div>
+            <div class="room-card match-settings"><span class="eyebrow">MATCH SETTINGS</span><label>GAME MODE<select id="modeSelect"><option value="1v1">1v1 · FIRST TO FIVE</option><option value="practice">PRACTICE · NO SCORE</option></select></label><label>AI DIFFICULTY<select id="difficultySelect"><option>BEGINNER</option><option>INTERMEDIATE</option><option selected>ADVANCED</option><option>EXPERT</option></select></label><label>AI PERSONALITY<select id="personalitySelect"><option>AGGRESSIVE</option><option>DEFENSIVE</option><option>STAMINA SPECIALIST</option><option>COUNTER ATTACKER</option><option selected>BALANCED</option></select></label><button class="primary-btn full-btn" id="startMatchBtn">START MATCH <span>→</span></button></div></div>
+        </section>
+
+        <section class="view settings-view" id="settingsView"><div class="page-heading"><div><span class="eyebrow">PREFERENCES</span><h1>MAKE IT <em>YOURS.</em></h1></div><button class="ghost-btn" id="settingsBack">← BACK</button></div><div class="settings-card"><label>MASTER VOLUME <input type="range" id="masterVolume" min="0" max="100" value="58"/><b id="volumeValue">58%</b></label><label>CAMERA SHAKE <input type="range" id="shakeSetting" min="0" max="100" value="45"/><b id="shakeValue">45%</b></label><div class="settings-note">Audio and camera effects are local presentation settings. They never affect the physics simulation.</div></div></section>
+      </main>
+      <div class="toast" id="toast"></div>
+      <div class="mobile-controls"><button data-move="up">▲</button><div><button data-move="left">◀</button><button data-move="down">▼</button><button data-move="right">▶</button></div><button class="mobile-dash" id="mobileDash">DASH</button></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
